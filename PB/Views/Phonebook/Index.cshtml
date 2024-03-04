@@ -1,0 +1,47 @@
+﻿@model Phonebook
+@{
+    Layout = null;
+    Boolean selectedContact = false;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="width=device-width" />
+    <title>Contacts </title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Forename</th>
+                <th>Surname</th>
+                <th></th> <!-- Empty header for delete icon -->
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model == null || Model.Contacts.Count == 0)
+            {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            } else {
+                @foreach (Contact contact in Model.Contacts)
+                {
+                <tr>
+                    <td onclick='location.href="/Phonebook/Edit?id=@contact.ContactId"'>@contact.Forename</td>
+                    <td onclick='location.href="/Phonebook/Edit?id=@contact.ContactId"'>@contact.Surname</td>
+                    <td>
+                        <img src="~/delete_svg.svg" onclick='location.href="/Phonebook/Delete?id=@contact.ContactId"'>                            
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+</body>
+</html>

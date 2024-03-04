@@ -1,0 +1,49 @@
+﻿@model Contact
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+
+<h4>Contact</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            <form asp-controller="Phonebook" asp-action="SaveItem" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ContactId" />
+                <input type="hidden" asp-for="Phonebook" />
+                <input type="hidden" asp-for="PhonebookId" />
+
+                <div class="form-group">
+                    <label asp-for="Forename" class="control-label"></label>
+                    <input asp-for="Forename" class="form-control" />
+                    <span asp-validation-for="Forename" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Surname" class="control-label"></label>
+                    <input asp-for="Surname" class="form-control" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Phonebook" asp-action="Index" asp-route-id=@Model.PhonebookId>Back to List</a>
+</div>
+
+</body>
+</html>
